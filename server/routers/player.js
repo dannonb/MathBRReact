@@ -1,6 +1,6 @@
 import express from 'express'
 import auth from '../middleware/auth.js'
-import Player from '../models/players.js'
+import Player from '../models/player.js'
 const router = new express.Router()
 
 router.post('/players', async (req, res) => {
@@ -55,3 +55,5 @@ router.get('players/stats', auth, async (req, res) => {
         res.status(500).send()
     }
 })
+
+export default router

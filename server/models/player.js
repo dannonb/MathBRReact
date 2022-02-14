@@ -1,7 +1,8 @@
 import mongoose from 'mongoose'
-import validator from 'validator'
 import bcrypt from 'bcrypt'
 import Filter from 'bad-words'
+import jwt from 'jsonwebtoken'
+import Stats from './stats.js'
 
 const filter = new Filter()
 
@@ -28,29 +29,34 @@ const playerSchema = new mongoose.Schema({
             }
         }
     },
-    stats: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Stats'
-    },
     tokens: [{
+       token: {
         type: String,
         required: true
+       }
     }]
 },{
     timestamps: true
 })
 
-userSchema.methods.generateAuthToken = async function () {
-    const user = this
-    const token = jwt.sign({ _id: user._id.toString() }, 'thisismynewcourse')
+playerSchema.virtual('stats', {
+    ref: 'Stats',
+    localField: '_id',
+    foreignField: 'player'
+})
 
-    user.tokens = user.tokens.concat({ token })
-    await user.save()
+playerSchema.methods.generateAuthToken = async function () {
+    const player = this
+    const token = jwt.sign({ _id: player._id.toString() }, 'thisismynewcourse')
+    console.log(token)
+
+    player.tokens = player.tokens.concat({ token })
+    await player.save()
 
     return token
 }
 
-userSchema.statics.findByCredentials = async (username, password) => {
+playerSchema.statics.findByCredentials = async (username, password) => {
     const user = await Player.findOne({ username })
 
     if (!user) {
@@ -66,7 +72,7 @@ userSchema.statics.findByCredentials = async (username, password) => {
     return user
 }
 
-userSchema.methods.toJSON = function () {
+playerSchema.methods.toJSON = function () {
     const user = this
     const userObject = user.toObject()
 
@@ -76,13 +82,19 @@ userSchema.methods.toJSON = function () {
     return userObject
 }
 
-userSchema.pre('save', async function(next) {
+playerSchema.pre('save', async function(next) {
     const user = this
 
     if (user.isModified('password')) {
         user.password = await bcrypt.hash(user.password, 8)
     }
 
+    next()
+})
+
+playerSchema.pre('remove', async function(next) {
+    const player = this
+    await Stats.deleteMany({ player: player._id })
     next()
 })
 

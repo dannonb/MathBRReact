@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import Player from '../models/players.js'
+import Player from '../models/player.js'
 
 const auth = async (req, res, next) => {
     try {

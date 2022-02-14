@@ -8,10 +8,11 @@ import Score from "../../components/Score/Score";
 import Question from "../../components/Question/Question";
 
 const btnValues = [
-    [7, 8, 9],
-    [4, 5, 6],
-    [1, 2, 3],
-    [ 0, "Send"],
+    ['clear', 'skip', '', ''],
+    [6, 7, 8, 9],
+    [2, 3, 4, 5],
+    [0, 1, 'Send'],
+    
 ];
 
 const toLocaleString = (num) =>

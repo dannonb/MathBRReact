@@ -97,18 +97,18 @@ export const exponentQuestion = (difficulty) => {
     )
 }
 
-console.log('level 1 addition', additionQuestion(1))
-console.log('level 2 addition', additionQuestion(2))
-console.log('level 3 addition', additionQuestion(3))
+// console.log('level 1 addition', additionQuestion(1))
+// console.log('level 2 addition', additionQuestion(2))
+// console.log('level 3 addition', additionQuestion(3))
 
-console.log('level 1 subtraction', subtractionQuestion(1))
-console.log('level 2 subtraction', subtractionQuestion(2))
-console.log('level 3 subtraction', subtractionQuestion(3))
+// console.log('level 1 subtraction', subtractionQuestion(1))
+// console.log('level 2 subtraction', subtractionQuestion(2))
+// console.log('level 3 subtraction', subtractionQuestion(3))
 
-console.log('level 1 multiplication', multiplicationQuestion(1))
-console.log('level 2 multiplication', multiplicationQuestion(2))
-console.log('level 3 multiplication', multiplicationQuestion(3))
+// console.log('level 1 multiplication', multiplicationQuestion(1))
+// console.log('level 2 multiplication', multiplicationQuestion(2))
+// console.log('level 3 multiplication', multiplicationQuestion(3))
 
-console.log('level 1 exponent', exponentQuestion(1))
-console.log('level 2 exponent', exponentQuestion(2))
-console.log('level 3 exponent', exponentQuestion(3))
+// console.log('level 1 exponent', exponentQuestion(1))
+// console.log('level 2 exponent', exponentQuestion(2))
+// console.log('level 3 exponent', exponentQuestion(3))

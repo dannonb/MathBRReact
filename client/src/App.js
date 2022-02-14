@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NumberPad from './views/NumberPad/NumberPad'
+import Auth from './views/Auth/Auth'
 import io from 'socket.io-client'
 
 const socket = io.connect('http://localhost:8080')
@@ -26,8 +27,8 @@ function App() {
   })
   return (
     <>
-      <NumberPad />
-      <div>
+      {/* <NumberPad /> */}
+      {/* <div>
         <form onSubmit={sendMessage}>
           <input type='text' name='name' onChange={handleChange} />
           <input type='text' name='message' onChange={handleChange} />
@@ -40,7 +41,8 @@ function App() {
             {obj.name}: {obj.message}
           </>
         ))}
-      </div>
+      </div> */}
+      <Auth />
     </>
   );
 }
